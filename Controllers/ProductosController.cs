@@ -14,52 +14,52 @@ public class ProductoController : Controller
   [HttpGet]
   public IActionResult Index()
   {
-    var productos = _productoRepository.ListarProductos();
+    var productos = _productoRepository.GetAll();
     return View(productos);
   }
 
   [HttpGet]
-  public IActionResult DetallesProducto(int id)
+  public IActionResult Detail(int id)
   {
-    var producto = _productoRepository.ObtenerProductoPorID(id);
+    var producto = _productoRepository.GetById(id);
     return View(producto);
   }
 
   [HttpGet]
-  public IActionResult EditarProducto(int id)
+  public IActionResult Edit(int id)
   {
-    var producto = _productoRepository.ObtenerProductoPorID(id);
+    var producto = _productoRepository.GetById(id);
     return View(producto);
   }
   [HttpPost]
-  public IActionResult EditarProducto(Producto producto)
+  public IActionResult Edit(Producto producto)
   {
-    _productoRepository.ModificarProducto(producto.IdProducto, producto.Descripcion, producto.Precio);
+    _productoRepository.Edit(producto.IdProducto, producto.Descripcion, producto.Precio);
     return RedirectToAction(nameof(Index));
   }
 
   [HttpGet]
-  public IActionResult EliminarProducto(int id)
+  public IActionResult Delete(int id)
   {
-    var producto = _productoRepository.ObtenerProductoPorID(id);
+    var producto = _productoRepository.GetById(id);
     return View(producto);
   }
 
   [HttpPost, ActionName("EliminarProducto")]
   public IActionResult EliminarProductoConfirmado(int id)
   {
-    _productoRepository.EliminarProductoPorID(id);
+    _productoRepository.Delete(id);
     return RedirectToAction(nameof(Index));
   }
 
   [HttpGet]
-  public IActionResult CrearProducto()
+  public IActionResult Create()
   {
     return View();
   }
 
   [HttpPost]
-  public IActionResult CrearProducto(ProductoViewModel productoVM)
+  public IActionResult Create(ProductoViewModel productoVM)
   {
     if (!ModelState.IsValid)
     {
@@ -71,7 +71,7 @@ public class ProductoController : Controller
       Precio = productoVM.Precio
     };
 
-    _productoRepository.CrearProducto(producto);
+    _productoRepository.Create(producto);
     return RedirectToAction(nameof(Index));
   }
 }

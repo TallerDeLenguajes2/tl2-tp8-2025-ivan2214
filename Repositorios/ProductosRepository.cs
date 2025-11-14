@@ -4,7 +4,7 @@ using Models;
 public class ProductoRepository : IProductoRepository
 {
   private string cadenaDeConexion = "Data Source = Tienda.db";
-  public void CrearProducto(Producto _producto)
+  public void Create(Producto _producto)
   {
     string query = "INSERT INTO Productos (Descripcion, Precio) VALUES (@des,@pre)";
 
@@ -24,7 +24,7 @@ public class ProductoRepository : IProductoRepository
 
   }
 
-  public void ModificarProducto(int _id, string _nuevoNombre, double _nuevoPrecio)
+  public void Edit(int _id, string _nuevoNombre, double _nuevoPrecio)
   {
     string query = "UPDATE Productos SET Descripcion = @nuevaDes, Precio = @nuevoPrecio WHERE IDProducto = @id";
 
@@ -43,7 +43,7 @@ public class ProductoRepository : IProductoRepository
       connection.Close();
     }
   }
-  public List<Producto> ListarProductos()
+  public List<Producto> GetAll()
   {
     List<Producto> listaProductos = new List<Producto>();
     string query = "SELECT * FROM Productos";
@@ -74,7 +74,7 @@ public class ProductoRepository : IProductoRepository
     return listaProductos;
   }
 
-  public Producto ObtenerProductoPorID(int _id)
+  public Producto GetById(int _id)
   {
     Producto producto = new Producto();
     string query = "SELECT * FROM Productos WHERE IDProducto = @id";
@@ -102,7 +102,7 @@ public class ProductoRepository : IProductoRepository
     return producto;
   }
 
-  public void EliminarProductoPorID(int _id)
+  public void Delete(int _id)
   {
     string query = "DELETE FROM Productos WHERE IDProducto = @id";
 
