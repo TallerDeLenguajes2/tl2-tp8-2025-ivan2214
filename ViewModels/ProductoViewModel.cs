@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace ViewModels
 {
-    public class ProductoViewModels
+    public class ProductoViewModel
     {
         public int IdProducto { get; set; }
 

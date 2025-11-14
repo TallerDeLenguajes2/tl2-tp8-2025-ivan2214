@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using ViewModels;
 
 public class ProductoController : Controller
 {
@@ -58,8 +59,18 @@ public class ProductoController : Controller
   }
 
   [HttpPost]
-  public IActionResult CrearProducto(Producto producto)
+  public IActionResult CrearProducto(ProductoViewModel productoVM)
   {
+    if (!ModelState.IsValid)
+    {
+      return View(productoVM);
+    }
+    var producto = new Producto
+    {
+      Descripcion = productoVM.Descripcion,
+      Precio = productoVM.Precio
+    };
+
     _productoRepository.CrearProducto(producto);
     return RedirectToAction(nameof(Index));
   }
