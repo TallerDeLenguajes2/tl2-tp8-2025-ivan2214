@@ -11,7 +11,7 @@
 
 <!--Boton para crear productos-->
 <section class="my-4">
-    <a asp-action="CrearProducto" class="btn btn-success">Crear Producto</a>
+    <a asp-action="Create" class="btn btn-success">Crear Producto</a>
 </section>
 
 <table class="table table-striped table-bordered">
@@ -31,12 +31,9 @@
                 <td>@producto.Descripcion</td>
                 <td>$@producto.Precio</td>
                 <td>
-                    <a asp-action="DetallesProducto" asp-route-id="@producto.IdProducto"
-                        class="btn btn-info btn-sm">Detalles</a>
-                    <a asp-action="EditarProducto" asp-route-id="@producto.IdProducto"
-                        class="btn btn-warning btn-sm">Editar</a>
-                    <a asp-action="EliminarProducto" asp-route-id="@producto.IdProducto"
-                        class="btn btn-danger btn-sm">Eliminar</a>
+                    <a asp-action="Detail" asp-route-id="@producto.IdProducto" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@producto.IdProducto" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@producto.IdProducto" class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
         }

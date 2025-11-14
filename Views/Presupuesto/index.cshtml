@@ -7,7 +7,7 @@
 <h2>Lista de Presupuestos</h2>
 
 <p>
-    <a asp-action="CrearPresupuesto" class="btn btn-success my-4">Crear Nuevo Presupuesto</a>
+    <a asp-action="Create" class="btn btn-success my-4">Crear Nuevo Presupuesto</a>
 </p>
 
 <table class="table table-striped table-bordered">
@@ -27,11 +27,10 @@
                 <td>@presupuesto.NombreDestinatario</td>
                 <td>@presupuesto.FechaCreacion.ToString("dd/MM/yyyy")</td>
                 <td>
-                    <a asp-action="DetallesPresupuesto" asp-route-id="@presupuesto.IdPresupuesto"
+                    <a asp-action="Detail" asp-route-id="@presupuesto.IdPresupuesto"
                         class="btn btn-info btn-sm">Detalles</a>
-                    <a asp-action="EditarPresupuesto" asp-route-id="@presupuesto.IdPresupuesto"
-                        class="btn btn-warning btn-sm">Editar</a>
-                    <a asp-action="EliminarPresupuesto" asp-route-id="@presupuesto.IdPresupuesto"
+                    <a asp-action="Edit" asp-route-id="@presupuesto.IdPresupuesto" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@presupuesto.IdPresupuesto"
                         class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
@@ -42,7 +41,7 @@
 @if (!Model.Any())
 {
     <div class="alert alert-info" role="alert">
-        No hay presupuestos registrados. <a asp-action="CrearPresupuesto" class="alert-link">Crear el primer
+        No hay presupuestos registrados. <a asp-action="Create" class="alert-link">Crear el primer
             presupuesto</a>.
     </div>
 }
