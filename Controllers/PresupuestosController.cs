@@ -12,56 +12,56 @@ public class PresupuestoController : Controller
   }
 
   [HttpGet]
-  public IActionResult CrearPresupuesto()
+  public IActionResult Create()
   {
     return View();
   }
 
   [HttpPost]
-  public IActionResult CrearPresupuesto(Presupuesto _presupuesto)
+  public IActionResult Create(Presupuesto _presupuesto)
   {
-    _presupuestoRepository.CrearPresupuesto(_presupuesto);
+    _presupuestoRepository.Create(_presupuesto);
     return RedirectToAction(nameof(Index));
   }
 
   [HttpGet]
   public IActionResult Index()
   {
-    var presupuestos = _presupuestoRepository.ListarPresupuestos();
+    var presupuestos = _presupuestoRepository.GetAll();
     return View(presupuestos);
   }
 
   [HttpGet]
-  public IActionResult DetallesPresupuesto(int id)
+  public IActionResult Detail(int id)
   {
-    var presupuesto = _presupuestoRepository.ObtenerPresupuestoPorID(id);
+    var presupuesto = _presupuestoRepository.GetById(id);
     return View(presupuesto);
   }
 
   [HttpGet]
-  public IActionResult EditarPresupuesto(int id)
+  public IActionResult Edit(int id)
   {
-    var presupuesto = _presupuestoRepository.ObtenerPresupuestoPorID(id);
+    var presupuesto = _presupuestoRepository.GetById(id);
     return View(presupuesto);
   }
 
   [HttpPost]
-  public IActionResult EditarPresupuesto(Presupuesto presupuesto)
+  public IActionResult Edit(Presupuesto presupuesto)
   {
-    _presupuestoRepository.ModificarPresupuesto(presupuesto);
+    _presupuestoRepository.Edit(presupuesto);
     return RedirectToAction(nameof(Index));
   }
 
   [HttpGet]
-  public IActionResult EliminarPresupuesto(int id)
+  public IActionResult Delete(int id)
   {
-    var presupuesto = _presupuestoRepository.ObtenerPresupuestoPorID(id);
+    var presupuesto = _presupuestoRepository.GetById(id);
     return View(presupuesto);
   }
   [HttpPost, ActionName("EliminarPresupuesto")]
   public IActionResult EliminarPresupuestoConfirmado(int id)
   {
-    _presupuestoRepository.EliminarPresupuestoPorID(id);
+    _presupuestoRepository.Delete(id);
     return RedirectToAction(nameof(Index));
   }
 }

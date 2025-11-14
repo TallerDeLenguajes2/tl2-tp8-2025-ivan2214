@@ -5,7 +5,7 @@ public class PresupuestoRepository : IPresupuestoRepository
 {
   private string cadenaDeConexion = "Data Source = Tienda.db";
 
-  public void CrearPresupuesto(Presupuesto _presupuesto)
+  public void Create(Presupuesto _presupuesto)
   {
     using (var connection = new SqliteConnection(cadenaDeConexion))
     {
@@ -22,7 +22,7 @@ public class PresupuestoRepository : IPresupuestoRepository
     }
   }
 
-  public List<Presupuesto> ListarPresupuestos()
+  public List<Presupuesto> GetAll()
   {
     var listaPresupuestos = new List<Presupuesto>();
     string query = "SELECT * FROM Presupuestos";
@@ -54,7 +54,7 @@ public class PresupuestoRepository : IPresupuestoRepository
     return listaPresupuestos;
   }
 
-  public Presupuesto ObtenerPresupuestoPorID(int id)
+  public Presupuesto GetById(int id)
   {
     Presupuesto presupuesto = new Presupuesto();
     string query = "SELECT * FROM Presupuestos WHERE IdPresupuesto = @id";
@@ -157,7 +157,7 @@ public class PresupuestoRepository : IPresupuestoRepository
     return listaDetalles;
   }
 
-  public void ModificarPresupuesto(Presupuesto presupuesto)
+  public void Edit(Presupuesto presupuesto)
   {
     string queryPresupuesto = "UPDATE Presupuestos SET NombreDestinatario = @nombre, FechaCreacion = @fecha WHERE IdPresupuesto = @id";
 
@@ -175,7 +175,7 @@ public class PresupuestoRepository : IPresupuestoRepository
     }
   }
 
-  public void EliminarPresupuestoPorID(int id)
+  public void Delete(int id)
   {
     string queryEliminarPresupuesto = "DELETE FROM Presupuestos WHERE IdPresupuesto = @id";
 
